@@ -6,7 +6,7 @@
     <artifactId>TheSpellweaver</artifactId>
     <version>0.0.1</version>
     <name>The Spellweaver</name>
-    <description>Adds the spellweaver, a sorcerer who combines elements into powerful spells.</description>
+    <description>Adds the Spellweaver, a sorcerer who combines elements into powerful spells.</description>
     <!-- Change the above for mod information. -->
 
     <properties>

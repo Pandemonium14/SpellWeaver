@@ -1,5 +1,6 @@
 package code.cards;
 
+import code.spellcraft.ElementManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -19,6 +20,7 @@ public class Strike extends AbstractEasyCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.NONE);
+        eManager().addElementAction(ElementManager.Elements.WATER);
     }
 
     public void upp() {

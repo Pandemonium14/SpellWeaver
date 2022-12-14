@@ -4,17 +4,22 @@ import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
+import code.spellcraft.ElementManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.RelicStrings;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import code.cards.AbstractEasyCard;
 import code.cards.cardvars.SecondDamage;
@@ -30,9 +35,12 @@ public class SpellweaverMod implements
         EditRelicsSubscriber,
         EditStringsSubscriber,
         EditKeywordsSubscriber,
-        EditCharactersSubscriber {
+        EditCharactersSubscriber,
+        PostInitializeSubscriber,
+        PostPlayerUpdateSubscriber,
+        PostRenderSubscriber {
 
-    public static final String modID = "spellweaver"; //TODO: Change this.
+    public static final String modID = "spellweaver";
 
     public static String makeID(String idText) {
         return modID + ":" + idText;
@@ -54,6 +62,9 @@ public class SpellweaverMod implements
     private static final String CARD_ENERGY_L = modID + "Resources/images/1024/energy.png";
     private static final String CHARSELECT_BUTTON = modID + "Resources/images/charSelect/charButton.png";
     private static final String CHARSELECT_PORTRAIT = modID + "Resources/images/charSelect/charBG.png";
+
+
+    public static ElementManager elementManager;
 
     public static Settings.GameLanguage[] SupportedLanguages = {
             Settings.GameLanguage.ENG,
@@ -156,6 +167,23 @@ public class SpellweaverMod implements
             for (Keyword keyword : keywords) {
                 BaseMod.addKeyword(modID, keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
             }
+        }
+    }
+
+    @Override
+    public void receivePostInitialize() {
+        elementManager = new ElementManager();
+    }
+
+    @Override
+    public void receivePostPlayerUpdate() {
+        elementManager.update();
+    }
+
+    @Override
+    public void receivePostRender(SpriteBatch spriteBatch) {
+        if (AbstractDungeon.isPlayerInDungeon() && (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT || AbstractDungeon.getCurrRoom() instanceof MonsterRoom) && !AbstractDungeon.player.isDead) {
+            elementManager.render(spriteBatch);
         }
     }
 }

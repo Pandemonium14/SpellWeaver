@@ -1,6 +1,8 @@
 package code.cards;
 
 import basemod.abstracts.CustomCard;
+import code.SpellweaverMod;
+import code.spellcraft.ElementManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
@@ -225,4 +227,7 @@ public abstract class AbstractEasyCard extends CustomCard {
     protected void upSecondDamage(int x) {
         upgradeSecondDamage(x);
     }
+
+    protected ElementManager eManager() {return SpellweaverMod.elementManager;}
+
 }
