@@ -1,5 +1,6 @@
 package code.spellcraft.UI;
 
+import basemod.BaseMod;
 import code.SpellweaverMod;
 import code.spellcraft.ElementManager;
 import com.badlogic.gdx.graphics.Color;
@@ -18,26 +19,34 @@ public class ElementsPanel {
     private static final TextureRegion[] textures = new TextureRegion[4];
 
     public void setCircles() {
-        float pX = AbstractDungeon.player.drawX;
-        float pY = AbstractDungeon.player.drawY;
+
         circles.clear();
         int i = 0;
         while (SpellweaverMod.elementManager.getElement(i) != ElementManager.Elements.NULL) {
-            switch (SpellweaverMod.elementManager.getElement(i)) {
-                case FIRE:
-                    circles.add(new ElementCircle(Color.RED, textures[0], 0.5f + i * 0.1f, pX, pY + Settings.scale * (150f * pX + i * 20f)));
-                    break;
-                case WATER:
-                    circles.add(new ElementCircle(Color.BLUE, textures[1], 0.5f + i * 0.1f, pX, pY + Settings.scale * (150f * pX + i * 20f)));
-                    break;
-                case EARTH:
-                    circles.add(new ElementCircle(Color.GREEN, textures[2], 0.5f + i * 0.1f, pX, pY + Settings.scale * (150f * pX + i * 20f)));
-                    break;
-                case AIR:
-                    circles.add(new ElementCircle(Color.WHITE, textures[3], 0.5f + i * 0.1f, pX, pY + Settings.scale * (150f * pX + i * 20f)));
-                    break;
-            }
+            circles.add(getCircle(SpellweaverMod.elementManager.getElement(i), i));
+            i++;
         }
+    }
+
+    private ElementCircle getCircle(ElementManager.Elements e, int i) {
+        float pX = AbstractDungeon.player.drawX;
+        float pY = AbstractDungeon.player.drawY;
+        switch (SpellweaverMod.elementManager.getElement(i)) {
+            case FIRE:
+                return new ElementCircle(Color.RED, textures[0], 0.5f + i * 0.1f, pX, pY + Settings.scale * (300f + i * 40f));
+            case WATER:
+                return new ElementCircle(Color.BLUE, textures[1], 0.5f + i * 0.1f, pX, pY + Settings.scale * (300f + i * 40f));
+            case EARTH:
+                return new ElementCircle(Color.GREEN, textures[2], 0.5f + i * 0.1f, pX, pY + Settings.scale * (300f + i * 40f));
+            case AIR:
+                return new ElementCircle(Color.WHITE, textures[3], 0.5f + i * 0.1f, pX, pY + Settings.scale * (300f + i * 40f));
+        }
+        BaseMod.logger.warn("null circle added !!!");
+        return null;
+    }
+
+    public void addCircle(ElementManager.Elements e, int i) {
+        circles.add(getCircle(e,i));
     }
 
     public void update() {
@@ -53,9 +62,9 @@ public class ElementsPanel {
     }
 
     static {
-        textures[0] = new TextureRegion(ImageMaster.loadImage(SpellweaverMod.makeImagePath("ui/NormalCircle.png")));
-        textures[1] = new TextureRegion(ImageMaster.loadImage(SpellweaverMod.makeImagePath("ui/NormalCircle.png")));
-        textures[2] = new TextureRegion(ImageMaster.loadImage(SpellweaverMod.makeImagePath("ui/NormalCircle.png")));
-        textures[3] = new TextureRegion(ImageMaster.loadImage(SpellweaverMod.makeImagePath("ui/NormalCircle.png")));
+        textures[0] = new TextureRegion(ImageMaster.loadImage(SpellweaverMod.makeImagePath("ui/NormalCircle.png")),256,256);
+        textures[1] = new TextureRegion(ImageMaster.loadImage(SpellweaverMod.makeImagePath("ui/NormalCircle.png")),256,256);
+        textures[2] = new TextureRegion(ImageMaster.loadImage(SpellweaverMod.makeImagePath("ui/NormalCircle.png")),256,256);
+        textures[3] = new TextureRegion(ImageMaster.loadImage(SpellweaverMod.makeImagePath("ui/NormalCircle.png")),256,256);
     }
 }

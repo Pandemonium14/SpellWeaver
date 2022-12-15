@@ -1,8 +1,16 @@
 package code.spellcraft;
 
+import basemod.BaseMod;
+import code.spellcraft.UI.ElementCircle;
 import code.spellcraft.UI.ElementsPanel;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.colorless.Madness;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+
+import java.util.ArrayList;
 
 public class ElementManager {
 
@@ -22,7 +30,10 @@ public class ElementManager {
     }
 
     protected void addElement(Elements e) {
+        BaseMod.logger.info("Adding a circle: " + e.name());
         elements.add(e);
+        panel.addCircle(e, elements.size()-1);
+
     }
 
     public void addElementAction(Elements e) {
@@ -37,6 +48,93 @@ public class ElementManager {
         AbstractDungeon.actionManager.addToTop(new AddElementAction(e, amount));
     }
 
+    private AbstractCard getInvokation(ArrayList<Elements> elements) {
+        String fire = "";
+        String water = "";
+        String earth = "";
+        String air = "";
+        for (Elements e : elements) {
+            switch(e) {
+                case FIRE:
+                    fire += "F";
+                    break;
+                case WATER:
+                    water += "W";
+                    break;
+                case EARTH:
+                    earth += "E";
+                    break;
+                case AIR:
+                    air += "A";
+                    break;
+                default:
+            }
+        }
+        String key = fire + water + earth + air;
+        switch (key) {
+            case ("FFF") :
+                return new Madness();
+            case ("FFW") :
+                return new Madness();
+            case ("FFE") :
+                return new Madness();
+            case ("FFA") :
+                return new Madness();
+            case ("FWW") :
+                return new Madness();
+            case ("FWE") :
+                return new Madness();
+            case ("FWA") :
+                return new Madness();
+            case ("FEE") :
+                return new Madness();
+            case ("FEA") :
+                return new Madness();
+            case ("FAA") :
+                return new Madness();
+            case ("WWW") :
+                return new Madness();
+            case ("WWE") :
+                return new Madness();
+            case ("WWA") :
+                return new Madness();
+            case ("WEE") :
+                return new Madness();
+            case ("WEA") :
+                return new Madness();
+            case ("WAA") :
+                return new Madness();
+            case ("EEE") :
+                return new Madness();
+            case ("EEA") :
+                return new Madness();
+            case ("EAA") :
+                return new Madness();
+            case ("AAA") :
+                return new Madness();
+            default:
+                BaseMod.logger.info("no evokation for this combination of elements");
+                return new Madness();
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public void update() {
         panel.update();
     }
@@ -45,13 +143,26 @@ public class ElementManager {
         panel.render(sb);
     }
 
-
-
     public static enum Elements {
         FIRE,
         WATER,
         AIR,
         EARTH,
         NULL
+    }
+
+    private String elementKey(Elements e) {
+        switch(e) {
+            case FIRE:
+                return "F";
+            case WATER:
+                return "W";
+            case EARTH:
+                return "E";
+            case AIR:
+                return "A";
+            default:
+                return "N";
+        }
     }
 }

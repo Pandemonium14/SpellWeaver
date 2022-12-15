@@ -1,5 +1,6 @@
 package code.cards;
 
+import code.spellcraft.ElementManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -17,6 +18,7 @@ public class Defend extends AbstractEasyCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         blck();
+        eManager().addElementAction(ElementManager.Elements.FIRE);
     }
 
     public void upp() {
