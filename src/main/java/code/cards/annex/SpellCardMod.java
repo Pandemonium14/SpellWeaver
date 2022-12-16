@@ -32,7 +32,7 @@ public class SpellCardMod extends AbstractCardModifier {
             return damage;
         } else {
             AbstractSpellCard spell = (AbstractSpellCard) card;
-            return damage + 3 * spell.potency;
+            return damage + spell.damagePotency;
         }
     }
 
@@ -42,7 +42,7 @@ public class SpellCardMod extends AbstractCardModifier {
             return block;
         } else {
             AbstractSpellCard spell = (AbstractSpellCard) card;
-            return block + 2 * spell.potency;
+            return block + spell.blockPotency;
         }
     }
 
@@ -52,7 +52,7 @@ public class SpellCardMod extends AbstractCardModifier {
             return magic;
         } else {
             AbstractSpellCard spell = (AbstractSpellCard) card;
-            return magic + spell.potency;
+            return magic + spell.magicPotency;
         }
     }
 

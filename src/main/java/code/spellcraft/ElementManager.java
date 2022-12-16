@@ -1,6 +1,8 @@
 package code.spellcraft;
 
 import basemod.BaseMod;
+import code.cards.spells.Flood;
+import code.cards.spells.RockPillar;
 import code.cards.spells.Wildfire;
 import code.spellcraft.UI.ElementsPanel;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -65,6 +67,7 @@ public class ElementManager {
 
     protected void clearWisps() {
         wisps = 0;
+        panel.clearWisps();
     }
 
     protected AbstractCard getInvokation(ArrayList<Elements> elements) {
@@ -112,7 +115,7 @@ public class ElementManager {
             case ("FAA") :
                 return new Madness();
             case ("WWW") :
-                return new Madness();
+                return new Flood();
             case ("WWE") :
                 return new Madness();
             case ("WWA") :
@@ -124,7 +127,7 @@ public class ElementManager {
             case ("WAA") :
                 return new Madness();
             case ("EEE") :
-                return new Madness();
+                return new RockPillar();
             case ("EEA") :
                 return new Madness();
             case ("EAA") :

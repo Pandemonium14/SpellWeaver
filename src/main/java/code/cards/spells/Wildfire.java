@@ -12,12 +12,13 @@ public class Wildfire extends AbstractSpellCard {
 
     public Wildfire() {
         super(ID,2,CardType.ATTACK, CardRarity.SPECIAL,CardTarget.ALL_ENEMY);
-        baseDamage = 4;
+        baseDamage = 0;
+        damagePotency = 4;
     }
 
     @Override
     public void upp() {
-        upgradeDamage(2);
+        damagePotency += 2;
     }
 
     @Override

@@ -11,7 +11,10 @@ import java.util.List;
 public abstract class AbstractSpellCard extends AbstractEasyCard {
 
 
-    public int potency;
+    public int damagePotency;
+    public int blockPotency;
+    public int magicPotency;
+    public boolean crumbling = false;
 
     public AbstractSpellCard(String cardID, int cost, CardType type, CardRarity rarity, CardTarget target) {
         super(cardID, cost, type, rarity, target);
@@ -24,7 +27,9 @@ public abstract class AbstractSpellCard extends AbstractEasyCard {
     @Override
     public AbstractCard makeStatEquivalentCopy() {
         AbstractCard copy = super.makeStatEquivalentCopy();
-        ((AbstractSpellCard) copy).potency = potency;
+        ((AbstractSpellCard) copy).damagePotency = damagePotency;
+        ((AbstractSpellCard) copy).blockPotency = blockPotency;
+        ((AbstractSpellCard) copy).magicPotency = magicPotency;
         return copy;
     }
 

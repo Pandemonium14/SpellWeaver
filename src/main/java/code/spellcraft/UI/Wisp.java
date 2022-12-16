@@ -31,6 +31,10 @@ public class Wisp {
         timer = 0;
     }
 
+    public int getParticleNum() {
+        return particles.size();
+    }
+
     public void update() {
         pointerX = centerX + centerDistance*MathUtils.cosDeg(30*duration);
         pointerY = centerY + centerDistance*0.4f*MathUtils.sinDeg(30*duration);
@@ -40,8 +44,17 @@ public class Wisp {
         if (timer >= timerMax) {
             particles.add(new WispParticle(pointerX, pointerY));
             timer = 0;
-            BaseMod.logger.info("==== Spawning particle, " + particles.size() +"total");
         }
+        if (particles.size() > 0) {
+            WispParticle oldestParticle = particles.get(0);
+            if (oldestParticle.duration > oldestParticle.START_DECAY_DUR && oldestParticle.scale <= 0.1f) particles.remove(0);
+        }
+        for (WispParticle particle : particles) {
+            particle.update();
+        }
+    }
+
+    public void updateToRemove() {
         if (particles.size() > 0) {
             WispParticle oldestParticle = particles.get(0);
             if (oldestParticle.duration > oldestParticle.START_DECAY_DUR && oldestParticle.scale <= 0.1f) particles.remove(0);

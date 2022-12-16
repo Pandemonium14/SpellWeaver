@@ -65,5 +65,13 @@
   "${ModID}:Wildfire": {
     "NAME": "Wildfire",
     "DESCRIPTION": "Deal !D! damage to ALL enemies 4 times."
+  },
+  "${ModID}:Flood": {
+    "NAME": "Flood",
+    "DESCRIPTION": "Apply !M! Vulnerable, Weak and spellweaver:Chill to ALL enemies."
+  },
+  "${ModID}:RockPillar": {
+    "NAME": "Rock Pillar",
+    "DESCRIPTION": "Gain !B! Block twice. NL spellweaver:Crumbling"
   }
 }

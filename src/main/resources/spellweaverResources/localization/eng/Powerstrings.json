@@ -6,5 +6,12 @@
       " #yStrength and #b",
       " #yDexterity."
     ]
+  },
+  "${ModID}:ChillPower": {
+    "NAME": "Chill",
+    "DESCRIPTIONS": [
+      "This creature deals #b",
+      " less damage. Reduces by 1 at the end of turn."
+    ]
   }
 }

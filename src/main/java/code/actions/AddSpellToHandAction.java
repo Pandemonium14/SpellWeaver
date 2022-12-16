@@ -19,7 +19,9 @@ public class AddSpellToHandAction extends AbstractGameAction {
     public void update() {
         if (spell instanceof AbstractSpellCard) {
             AbstractSpellCard cSpell = (AbstractSpellCard) spell;
-            cSpell.potency += wisps;
+            cSpell.damagePotency += 3*wisps;
+            cSpell.blockPotency += 2*wisps;
+            cSpell.magicPotency += wisps;
             addToTop(new MakeTempCardInHandAction(cSpell));
         } else {
             addToTop(new MakeTempCardInHandAction(spell));

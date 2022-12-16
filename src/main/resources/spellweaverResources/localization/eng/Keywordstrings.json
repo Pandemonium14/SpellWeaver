@@ -6,5 +6,21 @@
       "todos"
     ],
     "DESCRIPTION": "TODO: Make your own epic keywords"
+  },
+  {
+    "PROPER_NAME": "Chill",
+    "NAMES": [
+      "chill",
+      "Chill"
+    ],
+    "DESCRIPTION": "Chilled enemies deal less attack damage. Decreases by #b1 each turn."
+  },
+  {
+    "PROPER_NAME": "Crumbling",
+    "NAMES": [
+      "crumbling",
+      "Crumbling"
+    ],
+    "DESCRIPTION": "Numbers on #yCrumbling #ySpells reduce by half instead of the normal amount."
   }
 ]
