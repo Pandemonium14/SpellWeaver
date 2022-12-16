@@ -1,6 +1,7 @@
 package code.spellcraft.UI;
 
 import basemod.BaseMod;
+import code.SpellweaverMod;
 import code.spellcraft.ElementManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -13,10 +14,13 @@ import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.math.Affine2;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 
 import java.util.Set;
 
 public class ElementCircle {
+
+    private static final TextureRegion GLOW = new TextureRegion(ImageMaster.loadImage(SpellweaverMod.makeImagePath("ui/CircleGlow.png")));
 
     protected float x;
     protected float y;
@@ -44,11 +48,14 @@ public class ElementCircle {
         affine.translate(x, y);
         affine.scale(scale, 0.4f * scale);
         affine.rotate(angle);
+        Affine2 glowAffine = new Affine2(affine);
         affine.translate(-128,-128);
+        glowAffine.translate(-256,-256);
 
         sb.setBlendFunction(770, 1);
 
         sb.draw(texture,256,256, affine);
+        sb.draw(GLOW,512,512, glowAffine);
 
         sb.setBlendFunction(770, 771);
     }

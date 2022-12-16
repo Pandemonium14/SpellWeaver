@@ -1,11 +1,13 @@
 package code.spellcraft.UI;
 
 import basemod.BaseMod;
+import basemod.interfaces.PostRenderSubscriber;
 import code.SpellweaverMod;
 import code.spellcraft.ElementManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -17,6 +19,7 @@ public class ElementsPanel {
 
     private ArrayList<ElementCircle> circles = new ArrayList<>();
     private static final TextureRegion[] textures = new TextureRegion[4];
+    private ArrayList<Wisp> wisps = new ArrayList<>();
 
     public void setCircles() {
 
@@ -49,15 +52,34 @@ public class ElementsPanel {
         circles.add(getCircle(e,i));
     }
 
+    public void addWisp(int i) {
+        float pX = AbstractDungeon.player.drawX;
+        float pY = AbstractDungeon.player.drawY;
+        wisps.add(new Wisp(pX,pY + Settings.scale * 300f,110f));
+    }
+
     public void update() {
         for (ElementCircle c : circles) {
             c.update();
         }
+        for (Wisp wisp : wisps) {
+            wisp.update();
+        }
     }
 
     public void render(SpriteBatch sb) {
+        for (Wisp wisp : wisps) {
+            if (MathUtils.sinDeg(30*wisp.duration) > 0) {
+                wisp.render(sb);
+            }
+        }
         for (ElementCircle c : circles) {
             c.render(sb);
+        }
+        for (Wisp wisp : wisps) {
+            if (MathUtils.sinDeg(30*wisp.duration) <=0) {
+                wisp.render(sb);
+            }
         }
     }
 

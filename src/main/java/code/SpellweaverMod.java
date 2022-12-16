@@ -22,8 +22,8 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import code.cards.AbstractEasyCard;
-import code.cards.cardvars.SecondDamage;
-import code.cards.cardvars.SecondMagicNumber;
+import code.cards.annex.SecondDamage;
+import code.cards.annex.SecondMagicNumber;
 import code.relics.AbstractEasyRelic;
 
 import java.nio.charset.StandardCharsets;
@@ -185,5 +185,6 @@ public class SpellweaverMod implements
         if (AbstractDungeon.isPlayerInDungeon() && (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT || AbstractDungeon.getCurrRoom() instanceof MonsterRoom) && !AbstractDungeon.player.isDead) {
             elementManager.render(spriteBatch);
         }
+        //BlendingTable.render(spriteBatch);
     }
 }

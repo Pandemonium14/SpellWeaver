@@ -1,13 +1,11 @@
 package code.spellcraft;
 
 import basemod.BaseMod;
-import code.spellcraft.UI.ElementCircle;
+import code.cards.spells.Wildfire;
 import code.spellcraft.UI.ElementsPanel;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.colorless.Madness;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import java.util.ArrayList;
@@ -16,6 +14,7 @@ public class ElementManager {
 
     private final UnorderedArrayList<Elements> elements = new UnorderedArrayList<>();
     private final ElementsPanel panel = new ElementsPanel();
+    private int wisps = 0;
 
     public boolean hasElement(Elements e) {
         return elements.contains(e);
@@ -33,7 +32,9 @@ public class ElementManager {
         BaseMod.logger.info("Adding a circle: " + e.name());
         elements.add(e);
         panel.addCircle(e, elements.size()-1);
-
+        if (elements.size() == 3) {
+            AbstractDungeon.actionManager.addToBottom(new CreateSpellAction(elements));
+        }
     }
 
     public void addElementAction(Elements e) {
@@ -48,7 +49,25 @@ public class ElementManager {
         AbstractDungeon.actionManager.addToTop(new AddElementAction(e, amount));
     }
 
-    private AbstractCard getInvokation(ArrayList<Elements> elements) {
+    protected void clearElements() {
+        elements.clear();
+        panel.setCircles();
+    }
+
+    public void addWisp() {
+        wisps++;
+        panel.addWisp(wisps);
+    }
+
+    public int getWisps() {
+        return wisps;
+    }
+
+    protected void clearWisps() {
+        wisps = 0;
+    }
+
+    protected AbstractCard getInvokation(ArrayList<Elements> elements) {
         String fire = "";
         String water = "";
         String earth = "";
@@ -73,7 +92,7 @@ public class ElementManager {
         String key = fire + water + earth + air;
         switch (key) {
             case ("FFF") :
-                return new Madness();
+                return new Wildfire();
             case ("FFW") :
                 return new Madness();
             case ("FFE") :
@@ -113,7 +132,7 @@ public class ElementManager {
             case ("AAA") :
                 return new Madness();
             default:
-                BaseMod.logger.info("no evokation for this combination of elements");
+                BaseMod.logger.info("no spell for this combination of elements");
                 return new Madness();
         }
     }
