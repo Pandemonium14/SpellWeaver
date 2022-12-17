@@ -15,7 +15,7 @@ public class Wisp {
     private float pointerY;
     private float centerDistance;
     private float timer;
-    private ArrayList<WispParticle> particles = new ArrayList<>();
+    protected ArrayList<WispParticle> particles = new ArrayList<>();
 
     private final float initialDistance;
 

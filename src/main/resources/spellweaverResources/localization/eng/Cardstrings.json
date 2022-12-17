@@ -1,7 +1,7 @@
 {
   "${ModID}:Strike": {
     "NAME": "Strike",
-    "DESCRIPTION": "Deal !D! damage."
+    "DESCRIPTION": "Deal !D! damage. Unprefixed Spark word"
   },
   "${ModID}:Defend": {
     "NAME": "Defend",

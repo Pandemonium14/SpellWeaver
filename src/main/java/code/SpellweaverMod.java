@@ -38,7 +38,9 @@ public class SpellweaverMod implements
         EditCharactersSubscriber,
         PostInitializeSubscriber,
         PostPlayerUpdateSubscriber,
-        PostRenderSubscriber {
+        PostRenderSubscriber,
+        PostBattleSubscriber,
+        PreStartGameSubscriber{
 
     public static final String modID = "spellweaver";
 
@@ -183,5 +185,15 @@ public class SpellweaverMod implements
     @Override
     public void receivePostRender(SpriteBatch spriteBatch) {
 
+    }
+
+    @Override
+    public void receivePostBattle(AbstractRoom abstractRoom) {
+        elementManager.endBattle();
+    }
+
+    @Override
+    public void receivePreStartGame() {
+        elementManager.startGame();
     }
 }

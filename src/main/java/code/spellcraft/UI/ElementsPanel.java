@@ -7,6 +7,7 @@ import code.spellcraft.ElementManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 import com.megacrit.cardcrawl.core.Settings;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 public class ElementsPanel {
 
     private ArrayList<ElementCircle> circles = new ArrayList<>();
+    private ArrayList<ElementCircle> circlesToRemove = new ArrayList<>();
     private static final TextureRegion[] textures = new TextureRegion[4];
     private static final Color[] colors = new Color[4];
     private ArrayList<Wisp> wisps = new ArrayList<>();
@@ -36,22 +38,38 @@ public class ElementsPanel {
     private ElementCircle getCircle(ElementManager.Elements e, int i) {
         float pX = AbstractDungeon.player.drawX;
         float pY = AbstractDungeon.player.drawY;
-        switch (SpellweaverMod.elementManager.getElement(i)) {
-            case FIRE:
-                return new ElementCircle(colors[0], textures[0], 0.5f + i * 0.1f, pX, pY + Settings.scale * (300f + i * 40f));
-            case WATER:
-                return new ElementCircle(colors[1], textures[1], 0.5f + i * 0.1f, pX, pY + Settings.scale * (300f + i * 40f));
-            case EARTH:
-                return new ElementCircle(colors[2], textures[2], 0.5f + i * 0.1f, pX, pY + Settings.scale * (300f + i * 40f));
-            case AIR:
-                return new ElementCircle(colors[3], textures[3], 0.5f + i * 0.1f, pX, pY + Settings.scale * (300f + i * 40f));
-        }
-        BaseMod.logger.warn("null circle added !!!");
-        return null;
+        return new ElementCircle(e, 0.5f + i * 0.1f, pX, pY + Settings.scale * (300f + i * 40f));
     }
 
     public void addCircle(ElementManager.Elements e, int i) {
         circles.add(getCircle(e,i));
+    }
+
+    public void removeCircle(ElementManager.Elements e) {
+        boolean foundCircle = false;
+        for (ElementCircle c : circles) {
+            if (c.element == e) {
+                circlesToRemove.add(c);
+                foundCircle = true;
+                break;
+            }
+        }
+        if (foundCircle) circles.remove(circlesToRemove.get(circlesToRemove.size()-1));
+        placeCircles();
+    }
+
+    public void clearCircles() {
+        circlesToRemove.addAll(circles);
+        circles.clear();
+    }
+
+    public void placeCircles() {
+        int counter = 0;
+        float pY = AbstractDungeon.player.drawY;
+        for (ElementCircle circle : circles) {
+            circle.targetY = pY + Settings.scale * (300f + counter * 40f);
+            counter++;
+        }
     }
 
     public void addWisp(int i) {
@@ -78,6 +96,11 @@ public class ElementsPanel {
         }
     }
 
+    public void playCreateSpell() {
+        clearCircles();
+        clearWisps();
+    }
+
     public void update() {
         Wisp.updateGlobalAngle();
         for (ElementCircle c : circles) {
@@ -86,9 +109,18 @@ public class ElementsPanel {
         for (Wisp wisp : wisps) {
             wisp.update();
         }
+        ArrayList<Wisp> wispRemovalList = new ArrayList<>();
+        ArrayList<ElementCircle> circleRemovalList = new ArrayList<>();
         for (Wisp wisp : wispsToRemove) {
             wisp.updateToRemove();
+            if (wisp.particles.isEmpty()) wispRemovalList.add(wisp);
         }
+        for (ElementCircle circle : circlesToRemove) {
+            circle.updateToRemove();
+            if (circle.scale == 0f) circleRemovalList.add(circle);
+        }
+        wispsToRemove.removeAll(wispRemovalList);
+        circlesToRemove.removeAll(circleRemovalList);
     }
 
     public void render(SpriteBatch sb) {
@@ -101,6 +133,9 @@ public class ElementsPanel {
             }
         }
         for (ElementCircle c : circles) {
+            c.render(sb);
+        }
+        for (ElementCircle c : circlesToRemove) {
             c.render(sb);
         }
         for (Wisp wisp : W) {

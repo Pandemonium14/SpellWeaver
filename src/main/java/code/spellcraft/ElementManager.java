@@ -2,6 +2,7 @@ package code.spellcraft;
 
 import basemod.BaseMod;
 import code.cards.spells.*;
+import code.spellcraft.UI.ElementCircle;
 import code.spellcraft.UI.ElementsPanel;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -49,9 +50,20 @@ public class ElementManager {
         AbstractDungeon.actionManager.addToTop(new AddElementAction(e, amount));
     }
 
+    public boolean removeElement(Elements e) {
+        int index = elements.indexOf(e);
+        if (index != -1) {
+            elements.remove(index);
+            panel.removeCircle(e);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     protected void clearElements() {
         elements.clear();
-        panel.setCircles();
+        panel.clearCircles();
     }
 
     public void addWisp() {
@@ -66,6 +78,16 @@ public class ElementManager {
     protected void clearWisps() {
         wisps = 0;
         panel.clearWisps();
+    }
+
+    public void endBattle() {
+        clearWisps();
+        clearElements();
+    }
+
+    public void startGame() {
+        clearElements();
+        clearWisps();
     }
 
     protected AbstractCard getInvokation(ArrayList<Elements> elements) {
