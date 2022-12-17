@@ -17,7 +17,7 @@ public class VineWrap extends AbstractSpellCard {
         baseMagicNumber=magicNumber = 0;
         magicPotency = 7;
         baseDamage = 0;
-        magicPotency = 12;
+        damagePotency = 12;
     }
 
     @Override

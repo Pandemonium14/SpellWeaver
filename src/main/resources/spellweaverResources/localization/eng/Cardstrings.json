@@ -100,7 +100,7 @@
   },
   "${ModID}:LavaSurge": {
     "NAME": "Lava Surge",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL ALL enemies lose !M! Strength."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL ALL enemies lose !M! Strength this turn."
   },
   "${ModID}:Thunderstrike": {
     "NAME": "Thunderstrike",
@@ -112,7 +112,7 @@
   },
   "${ModID}:SteamScreen": {
     "NAME": "Steam Screen",
-    "DESCRIPTION": "{@@}Next turn, gain {!M!|1=[E]|2=[E][E]|3=[E][E][E]|@=!M! *Energy} and draw !M! card{!M!|>1=s}."
+    "DESCRIPTION": "{@@}Next turn, gain {!M!|1=[E]|2=[E] [E]|3=[E] [E] [E]|@=!M! *Energy} and draw !M! card{!M!|>1=s}."
   },
   "${ModID}:ChokingSmoke": {
     "NAME": "Choking Smoke",

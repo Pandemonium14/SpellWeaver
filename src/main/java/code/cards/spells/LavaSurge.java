@@ -3,9 +3,11 @@ package code.cards.spells;
 import code.SpellweaverMod;
 import code.util.Wiz;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.GainStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
 public class LavaSurge extends AbstractSpellCard {
@@ -31,5 +33,11 @@ public class LavaSurge extends AbstractSpellCard {
     public void use(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster) {
         allDmg(AbstractGameAction.AttackEffect.FIRE);
         for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) Wiz.applyToEnemy(m, new StrengthPower(m, -magicNumber));
+        for (AbstractMonster mo : AbstractDungeon.getMonsters().monsters) {
+            if (!mo.hasPower("Artifact")) {// 70
+                this.addToBot(new ApplyPowerAction(mo, abstractPlayer, new GainStrengthPower(mo, this.magicNumber), this.magicNumber, true, AbstractGameAction.AttackEffect.NONE));// 71
+            }
+        }
     }
+
 }
