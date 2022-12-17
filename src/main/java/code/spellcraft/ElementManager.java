@@ -1,9 +1,7 @@
 package code.spellcraft;
 
 import basemod.BaseMod;
-import code.cards.spells.Flood;
-import code.cards.spells.RockPillar;
-import code.cards.spells.Wildfire;
+import code.cards.spells.*;
 import code.spellcraft.UI.ElementsPanel;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -97,43 +95,43 @@ public class ElementManager {
             case ("FFF") :
                 return new Wildfire();
             case ("FFW") :
-                return new Madness();
+                return new BurningStream();
             case ("FFE") :
-                return new Madness();
+                return new LavaSurge();
             case ("FFA") :
-                return new Madness();
+                return new Thunderstrike();
             case ("FWW") :
-                return new Madness();
+                return new ScaldingWave();
             case ("FWE") :
-                return new Madness();
+                return new Lahar();
             case ("FWA") :
-                return new Madness();
+                return new SteamScreen();
             case ("FEE") :
-                return new Madness();
+                return new SteelSpike();
             case ("FEA") :
-                return new Madness();
+                return new ChokingSmoke();
             case ("FAA") :
-                return new Madness();
+                return new StaticCharge();
             case ("WWW") :
                 return new Flood();
             case ("WWE") :
-                return new Madness();
+                return new VineWrap();
             case ("WWA") :
-                return new Madness();
+                return new IceAge();
             case ("WEE") :
-                return new Madness();
+                return new SummonSwamp();
             case ("WEA") :
-                return new Madness();
+                return new NaturesBlessing();
             case ("WAA") :
-                return new Madness();
+                return new HeavyRain();
             case ("EEE") :
                 return new RockPillar();
             case ("EEA") :
-                return new Madness();
+                return new StoneRain();
             case ("EAA") :
-                return new Madness();
+                return new Sandstorm();
             case ("AAA") :
-                return new Madness();
+                return new Cyclone();
             default:
                 BaseMod.logger.info("no spell for this combination of elements");
                 return new Madness();

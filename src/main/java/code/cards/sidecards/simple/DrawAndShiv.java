@@ -1,4 +1,4 @@
-package code.cards.democards.simple;
+package code.cards.sidecards.simple;
 
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.tempCards.Shiv;

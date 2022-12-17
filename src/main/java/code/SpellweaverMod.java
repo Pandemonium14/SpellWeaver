@@ -182,9 +182,6 @@ public class SpellweaverMod implements
 
     @Override
     public void receivePostRender(SpriteBatch spriteBatch) {
-        if (AbstractDungeon.isPlayerInDungeon() && (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT || AbstractDungeon.getCurrRoom() instanceof MonsterRoom) && !AbstractDungeon.player.isDead) {
-            elementManager.render(spriteBatch);
-        }
-        //BlendingTable.render(spriteBatch);
+
     }
 }

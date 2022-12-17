@@ -21,6 +21,7 @@ import code.actions.TimedVFXAction;
 
 import java.util.ArrayList;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class Wiz {
@@ -194,5 +195,11 @@ public class Wiz {
             return found.amount;
         }
         return 0;
+    }
+
+    public static void applyToAllEnemies(Function<AbstractMonster,AbstractPower> consumer) {
+        for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
+            applyToEnemy(m,consumer.apply(m));
+        }
     }
 }

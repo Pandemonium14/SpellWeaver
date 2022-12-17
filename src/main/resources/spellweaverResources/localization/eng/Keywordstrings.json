@@ -22,5 +22,21 @@
       "Crumbling"
     ],
     "DESCRIPTION": "Numbers on #yCrumbling #ySpells reduce by half instead of the normal amount."
-  }
+  },
+  {
+    "PROPER_NAME": "Invoke",
+    "NAMES": [
+      "invoke",
+      "Invoke"
+    ],
+    "DESCRIPTION": "Invoke an #yElement. Once #b3 #yElements are #Invoked, add a #ySpell to your hand."
+  },
+  {
+  "PROPER_NAME": "Scald",
+  "NAMES": [
+    "scald",
+    "Scald"
+  ],
+  "DESCRIPTION": "Scalded enemies receive more attack damage. Decreases by #b1 each turn."
+}
 ]

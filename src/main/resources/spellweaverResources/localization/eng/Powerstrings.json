@@ -13,5 +13,20 @@
       "This creature deals #b",
       " less damage. Reduces by 1 at the end of turn."
     ]
+  },
+  "${ModID}:ScaldPower": {
+    "NAME": "Scald",
+    "DESCRIPTIONS": [
+      "This creature receives #b",
+      " more attack damage. Reduces by 1 at the end of turn."
+    ]
+  },
+  "${ModID}:ChokingSmokePOwer": {
+    "NAME": "Scald",
+    "DESCRIPTIONS": [
+      "At the end of the next #b",
+      " deal #b",
+      " damage to ALL enemies."
+    ]
   }
 }

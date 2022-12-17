@@ -1,4 +1,4 @@
-package code.cards.democards.simple;
+package code.cards.sidecards.simple;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;

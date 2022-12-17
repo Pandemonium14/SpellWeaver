@@ -14,6 +14,7 @@ public class Wildfire extends AbstractSpellCard {
         super(ID,2,CardType.ATTACK, CardRarity.SPECIAL,CardTarget.ALL_ENEMY);
         baseDamage = 0;
         damagePotency = 4;
+        isMultiDamage = true;
     }
 
     @Override

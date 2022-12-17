@@ -57,7 +57,9 @@ public class ElementsPanel {
     public void addWisp(int i) {
         float pX = AbstractDungeon.player.drawX;
         float pY = AbstractDungeon.player.drawY;
-        wisps.add(new Wisp(pX,pY + Settings.scale * 300f,110f));
+        int startOffset = 365 - 360/ (wisps.size()+1);
+        wisps.add(new Wisp(pX,pY + Settings.scale * 300f,110f, startOffset));
+        placeWisps();
     }
 
     public void clearWisps() {
@@ -65,7 +67,19 @@ public class ElementsPanel {
         wisps.clear();
     }
 
+    private void placeWisps() {
+        int counter = 0;
+        int offset = 360/wisps.size();
+        BaseMod.logger.info("offset = " + offset);
+        for (Wisp wisp : wisps) {
+            wisp.targetOffset = counter*offset;
+            BaseMod.logger.info("counter*offset = "+counter*offset);
+            counter++;
+        }
+    }
+
     public void update() {
+        Wisp.updateGlobalAngle();
         for (ElementCircle c : circles) {
             c.update();
         }
@@ -82,7 +96,7 @@ public class ElementsPanel {
         W.addAll(wisps);
         W.addAll(wispsToRemove);
         for (Wisp wisp : W) {
-            if (MathUtils.sinDeg(30*wisp.duration) > 0) {
+            if (MathUtils.sinDeg(Wisp.globalAngle + wisp.angleOffset) > 0) {
                 wisp.render(sb);
             }
         }
@@ -90,7 +104,7 @@ public class ElementsPanel {
             c.render(sb);
         }
         for (Wisp wisp : W) {
-            if (MathUtils.sinDeg(30*wisp.duration) <=0) {
+            if (MathUtils.sinDeg(Wisp.globalAngle + wisp.angleOffset) <=0) {
                 wisp.render(sb);
             }
         }

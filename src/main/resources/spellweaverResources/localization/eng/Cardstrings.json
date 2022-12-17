@@ -72,6 +72,94 @@
   },
   "${ModID}:RockPillar": {
     "NAME": "Rock Pillar",
-    "DESCRIPTION": "Gain !B! Block twice. NL spellweaver:Crumbling"
+    "DESCRIPTION": "Gain !B! Block twice. NL spellweaver:Crumbling."
+  },
+  "${ModID}:Study": {
+    "NAME": "Study",
+    "DESCRIPTION": "{@@}Choose 1 *Element to spellweaver:Invoke.{!Upgrades!|>0=|@= NL Exhaust.}"
+  },
+  "${ModID}:FireChoice": {
+    "NAME": "Invoke Fire",
+    "DESCRIPTION": "spellweaver:Invoke *Fire."
+  },
+  "${ModID}:WaterChoice": {
+    "NAME": "Invoke Water",
+    "DESCRIPTION": "spellweaver:Invoke *Water."
+  },
+  "${ModID}:EarthChoice": {
+    "NAME": "Invoke Earth",
+    "DESCRIPTION": "spellweaver:Invoke *Earth."
+  },
+  "${ModID}:AirChoice": {
+    "NAME": "Invoke Air",
+    "DESCRIPTION": "spellweaver:Invoke *Air."
+  },
+  "${ModID}:Cyclone": {
+    "NAME": "Cyclone",
+    "DESCRIPTION": "{@@}Draw 3 cards. NL {!M!|>1=!M! random cards in your hand are|@=A random card in your hand is} free until played."
+  },
+  "${ModID}:LavaSurge": {
+    "NAME": "Lava Surge",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL ALL enemies lose !M! Strength."
+  },
+  "${ModID}:Thunderstrike": {
+    "NAME": "Thunderstrike",
+    "DESCRIPTION": "{@@}Deal !D! damage to a random enemy !M! time{!M!|>1=s}."
+  },
+  "${ModID}:BurningStream": {
+    "NAME": "Burning Stream",
+    "DESCRIPTION": "Apply !M! spellweaver:Scald to ALL enemies."
+  },
+  "${ModID}:SteamScreen": {
+    "NAME": "Steam Screen",
+    "DESCRIPTION": "{@@}Next turn, gain {!M!|1=[E]|2=[E][E]|3=[E][E][E]|@=!M! *Energy} and draw !M! card{!M!|>1=s}."
+  },
+  "${ModID}:ChokingSmoke": {
+    "NAME": "Choking Smoke",
+    "DESCRIPTION": "{@@}At the end of {!M!|>1=the next !M! turns|@=this turn}, deal !D! damage to ALL enemies."
+  },
+  "${ModID}:Lahar": {
+    "NAME": "Lahar",
+    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage to ALL enemies 3 times."
+  },
+  "${ModID}:SteelSpike": {
+    "NAME": "Steel Spike",
+    "DESCRIPTION": "Deal !D! damage. NL spellweaver:Crumbling."
+  },
+  "${ModID}:ScaldingWave": {
+    "NAME": "Scalding Wave",
+    "DESCRIPTION": "Gain !B! Block. NL Apply !M! spellweaver:Scald to ALL enemies."
+  },
+  "${ModID}:StaticCharge": {
+    "NAME": "Static Charge",
+    "DESCRIPTION": "Whenever you are attacked, deal !M! damage back."
+  },
+  "${ModID}:VineWrap": {
+    "NAME": "Vine Wrap",
+    "DESCRIPTION": "Deal !D! damage. NL Enemy takes !M! damage at the end of its turn."
+  },
+  "${ModID}:IceAge": {
+    "NAME": "Ice Age",
+    "DESCRIPTION": "Apply !M! spellweaver:Chill to ALL enemies twice."
+  },
+  "${ModID}:NaturesBlessing": {
+    "NAME": "Nature's Blessing",
+    "DESCRIPTION": "{@@}Remove !M! random debuff{!M!|>1=s} from you."
+  },
+  "${ModID}:Sandstorm": {
+    "NAME": "Sandstorm",
+    "DESCRIPTION": "Gain !B! Block. Next turn, gain !B! Block."
+  },
+  "${ModID}:StoneRain": {
+    "NAME": "Stone Rain",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies !M! times ."
+  },
+  "${ModID}:SummonSwamp": {
+    "NAME": "Summon Swamp",
+    "DESCRIPTION": "Gain !B! Block. NL Apply !M! spellweaver:Chill to ALL enemies."
+  },
+  "${ModID}:HeavyRain": {
+    "NAME": "Heavy Rain",
+    "DESCRIPTION": "{@@}Apply 1 Weak to ALL enemies !M! time{!M!|>1=s}."
   }
 }
